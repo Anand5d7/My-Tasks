@@ -1,7 +1,24 @@
 import {Component} from 'react'
-import {v4} from 'uuid'
+import {v4 as uuid} from 'uuid'
 import Tasks from './components/Tasks'
-import './App.css'
+
+import {
+  MainContainer,
+  TaskInputContainer,
+  TaskDisplayContainer,
+  Heading,
+  InputContainer,
+  LabelText,
+  Input,
+  Select,
+  AddButton,
+  TagsHeading,
+  TagsContainer,
+  TasksContainer,
+  TagsButton,
+  TagsListItem,
+  NoTaskText,
+} from './style'
 
 // These are the lists used in the application. You can move them to any component needed.
 
@@ -32,7 +49,6 @@ const tagsList = [
   },
 ]
 
-// Replace your code here
 class App extends Component {
   state = {
     myTasksList: [],
@@ -45,7 +61,7 @@ class App extends Component {
     const {inputTask, selectTag} = this.state
     const taskName = inputTask
     const taskCategory = selectTag
-    const id = v4()
+    const id = uuid()
     const bgColor = false
 
     if (taskName.length !== 0) {
@@ -82,78 +98,67 @@ class App extends Component {
     const filterTaskList =
       activeTag === 'INITIAL'
         ? myTasksList
-        : myTasksList.filter(eachItem => eachItem.taskCategory === activeTag)
+        : myTasksList.filter(each => each.taskCategory === activeTag)
 
     return (
-      <div className="main-container">
-        <div className="container-1">
-          <h1 className="heading">Create a task!</h1>
-          <form className="form-container">
-            <label className="label" htmlFor="textInput">
-              Task
-            </label>
-            <input
+      <MainContainer>
+        <TaskInputContainer>
+          <Heading>Create a task!</Heading>
+          <InputContainer>
+            <LabelText for="textInput">Task</LabelText>
+            <Input
               type="text"
               id="textInput"
               placeholder="Enter the task here"
               value={inputTask}
               onChange={this.onChangeInputTask}
-              className="input-text"
             />
-            <label className="label" htmlFor="optionInput">
-              Tags
-            </label>
-            <select
+            <LabelText for="optionInput">Tags</LabelText>
+            <Select
               id="optionInput"
               value={selectTag}
               onChange={this.onChangeSelectTag}
-              className="select-container"
             >
               {tagsList.map(eachTag => (
                 <option value={eachTag.optionId}>{eachTag.displayText}</option>
               ))}
-            </select>
-          </form>
-          <button
-            className="button"
-            type="button"
-            onClick={this.onClickAddButton}
-          >
+            </Select>
+          </InputContainer>
+          <AddButton type="button" onClick={this.onClickAddButton}>
             Add Task
-          </button>
-        </div>
-        <div className="container-2">
-          <h1 className="side-heading">Tags</h1>
-          <ul className="tags-container">
+          </AddButton>
+        </TaskInputContainer>
+        <TaskDisplayContainer>
+          <TagsHeading>Tags</TagsHeading>
+          <TagsContainer>
             {tagsList.map(eachTag => {
-              // eslint-disable-next-line
               const isActive = activeTag === eachTag.optionId
               return (
-                <li className="list-item-container" key={eachTag.optionId}>
-                  <button
-                    className="tag-button"
+                <TagsListItem key={eachTag.optionId}>
+                  <TagsButton
                     type="button"
                     value={eachTag.optionId}
                     onClick={this.onClickTag}
+                    isActive={isActive}
                   >
                     {eachTag.displayText}
-                  </button>
-                </li>
+                  </TagsButton>
+                </TagsListItem>
               )
             })}
-          </ul>
-          <h1 className="side-heading">Tasks</h1>
-          <ul className="task-container">
+          </TagsContainer>
+          <TagsHeading>Tasks</TagsHeading>
+          <TasksContainer>
             {filterTaskList.length === 0 ? (
-              <p className="para">No Tasks Added Yet</p>
+              <NoTaskText>No Tasks Added Yet</NoTaskText>
             ) : (
               filterTaskList.map(eachTask => (
                 <Tasks key={eachTask.id} taskDetails={eachTask} />
               ))
             )}
-          </ul>
-        </div>
-      </div>
+          </TasksContainer>
+        </TaskDisplayContainer>
+      </MainContainer>
     )
   }
 }
