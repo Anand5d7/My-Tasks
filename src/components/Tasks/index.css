@@ -1,0 +1,33 @@
+.list-item {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #1a171d;
+  height: 50px;
+  width: 100%;
+  padding: 10px;
+  margin: 5px;
+}
+.paragraph {
+  color: #f1f5f9;
+  font-family: 'Roboto';
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.tag-para {
+  background-color: #f3aa4e;
+  border: 0px;
+  height: 30px;
+  padding: 10px;
+  margin: 5px;
+  padding: 10px;
+  color: #131213;
+  font-family: 'Roboto';
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 20px;
+  text-align: center;
+}
