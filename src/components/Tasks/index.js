@@ -1,14 +1,14 @@
-import './index.css'
+import {TaskName, TagsCategory, ListItem} from './style'
 
 const Tasks = props => {
   const {taskDetails} = props
   const {taskName, taskCategory} = taskDetails
 
   return (
-    <li className="list-item">
-      <p className="paragraph">{taskName}</p>
-      <p className="tag-para">{taskCategory}</p>
-    </li>
+    <ListItem>
+      <TaskName>{taskName}</TaskName>
+      <TagsCategory>{taskCategory}</TagsCategory>
+    </ListItem>
   )
 }
 
