@@ -1,4 +1,6 @@
-.list-item {
+import styled from 'styled-components'
+
+export const ListItem = styled.li`
   list-style-type: none;
   display: flex;
   flex-direction: row;
@@ -9,25 +11,25 @@
   width: 100%;
   padding: 10px;
   margin: 5px;
-}
-.paragraph {
+`
+
+export const TaskName = styled.p`
   color: #f1f5f9;
   font-family: 'Roboto';
   font-size: 18px;
   font-weight: 600;
-}
+`
 
-.tag-para {
+export const TagsCategory = styled.p`
   background-color: #f3aa4e;
   border: 0px;
-  height: 30px;
+  height: 12px;
   padding: 10px;
   margin: 5px;
-  padding: 10px;
   color: #131213;
   font-family: 'Roboto';
   font-size: 12px;
   font-weight: 700;
   border-radius: 20px;
   text-align: center;
-}
+`
